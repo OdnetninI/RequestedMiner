@@ -7,6 +7,7 @@ Entity::Entity() {
   this->h = 0;
   this->tx = 0;
   this->ty = 0;
+  this->doRender = true;
   this->stateUpdated = true;
 
   for (int i = 0; i < 4; i++) {
@@ -57,4 +58,36 @@ void Entity::setTexture(sf::Texture* texture) {
 
 void Entity::render(sf::RenderWindow* window) {
   window->draw(this->vertex, 4,sf::PrimitiveType::TrianglesFan, this->renderState);
+}
+
+void Entity::toRender (bool doRender) {
+  this->doRender = doRender;
+}
+
+bool Entity::getIfRender() {
+  return this->doRender;
+}
+
+int32_t Entity::getX() {
+  return this->x;
+}
+
+int32_t Entity::getY() {
+  return this->y;
+}
+
+uint16_t Entity::getW() {
+  return this->w;
+}
+
+uint16_t Entity::getH() {
+  return this->h;
+}
+
+uint16_t Entity::getTx() {
+  return this->tx;
+}
+
+uint16_t Entity::getTy() {
+  return this->ty;
 }

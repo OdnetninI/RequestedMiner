@@ -3,11 +3,13 @@
 
 #include "GameState.hpp"
 #include "Entity.hpp"
+#include "EntityManager.hpp"
 
 class MainGameState : public GameState {
   private:
-    Entity entity;
+    EntityManager entityManager;
     sf::Texture text;
+
 
   public:
     MainGameState();

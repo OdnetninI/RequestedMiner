@@ -10,19 +10,21 @@ MainGameState::~MainGameState() {
 }
 
 void MainGameState::init() {
-  entity.setPosition(1,1);
-  entity.setSize(32,32);
-  entity.setTexturePos(0,0);
+  Entity* entity = new Entity();
+  entity->setPosition(1,1);
+  entity->setSize(32,32);
+  entity->setTexturePos(0,0);
   text.loadFromFile("Data/test.png");
-  entity.setTexture(&text);
+  entity->setTexture(&text);
+  this->entityManager.insert(entity);
 }
 
 void MainGameState::update() {
-  entity.update();
+  this->entityManager.update();
 }
 
 void MainGameState::render() {
-  entity.render(Game::Instance()->getWindow());
+  this->entityManager.draw(Game::Instance()->getWindow());
 }
 
 void MainGameState::cleanup() {
