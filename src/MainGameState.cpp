@@ -14,8 +14,8 @@ void MainGameState::init() {
   entity->setPosition(1,1);
   entity->setSize(32,32);
   entity->setTexturePos(0,0);
-  text.loadFromFile("Data/test.png");
-  entity->setTexture(&text);
+  this->textureManager.create("Player", "Data/test.png");
+  entity->setTexture(this->textureManager.get("Player"));
   this->entityManager.insert(entity);
 }
 

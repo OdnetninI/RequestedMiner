@@ -2,14 +2,13 @@
 #define __MAINGAMESTATE_HPP__
 
 #include "GameState.hpp"
-#include "Entity.hpp"
 #include "EntityManager.hpp"
+#include "TextureManager.hpp"
 
 class MainGameState : public GameState {
   private:
     EntityManager entityManager;
-    sf::Texture text;
-
+    TextureManager textureManager;
 
   public:
     MainGameState();
