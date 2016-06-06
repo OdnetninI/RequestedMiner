@@ -1,0 +1,35 @@
+#include "GameStateManager.hpp"
+
+GameStateManager* GameStateManager::instance = nullptr;
+
+GameStateManager* GameStateManager::Instance() {
+  if (!instance) instance = new GameStateManager();
+  return instance;
+}
+
+GameStateManager::GameStateManager() {
+
+}
+
+GameStateManager::~GameStateManager() {
+
+}
+
+void GameStateManager::insert(GameState* state) {
+  if (state != nullptr) {
+    state->init();
+    this->states.push(state);
+  }
+}
+
+void GameStateManager::extract() {
+  if (!this->states.empty()) {
+    this->state.top()->cleanup();
+    this->states.pop();
+  }
+}
+
+GameState* GameStateManager::getState() {
+  if (!this->states.empty()) return this->states.top();
+  return nullptr;
+}

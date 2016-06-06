@@ -1,12 +1,21 @@
 #include "Game.hpp"
 #include <iostream>
 
+Game* Game::instance = nullptr;
+
+Game* Game::Instance() {
+  if (!instance) instance = new Game();
+  return instance;
+}
+
 Game::Game() {
   this->view.setViewport(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
   this->glContextSettings.antialiasingLevel = 0;
   this->window.create(sf::VideoMode(SCALE_FACTOR*SCREEN_X,SCALE_FACTOR*SCREEN_Y), "Requested Miner", sf::Style::Close | sf::Style::Titlebar , this->glContextSettings);
   this->window.setView(this->view);
   this->running = true;
+  this->stateManager = GameStateManager::Instance();
+  this->currentState = nullptr;
 
   this->ticks = 0;
   this->oldTick = 0;
@@ -21,6 +30,9 @@ Game::~Game() {
 
 int Game::gameLoop() {
   while (this->window.isOpen() && running) {
+
+    this->currentState = this->stateManager->getState();
+
     if (this->gameSpeedTimer.getElapsedTime().asMilliseconds() >= 33) {
       this->ticks++;
       this->gameSpeedTimer.restart();
@@ -40,7 +52,7 @@ int Game::gameLoop() {
 
     if (this->ticks - this->oldTick >= 30) {
       std::cout << "FPS: " << this->frameTicks << std::endl;
-      std::cout << "UFS: " << this->actualTick << std::endl;
+      std::cout << "UPS: " << this->actualTick << std::endl;
       this->frameTicks = 0;
       this->ticks = 0;
       this->actualTick = 0;
@@ -60,12 +72,12 @@ void Game::update() {
       this->running = false;
   }
 
-
+  if (this->currentState != nullptr) this->currentState->update();
 
 }
 
 void Game::render() {
   window.clear();
-
+  if (this->currentState != nullptr) this->currentState->render();
   window.display();
 }

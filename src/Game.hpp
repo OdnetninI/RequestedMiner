@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include <SFML/Graphics.hpp>
+#include "GameState.hpp"
+#include "GameStateManager.hpp"
 
 #define NO_ERRORS 0
 #define SCREEN_X 240
@@ -17,6 +19,8 @@ class Game {
     sf::Event events;
     sf::ContextSettings glContextSettings;
     bool running;
+    GameStateManager* stateManager;
+    GameState* currentState;
 
     // Clock things
     sf::Clock gameSpeedTimer;
@@ -27,11 +31,15 @@ class Game {
     uint16_t frameTicks;
 
   public:
-    Game();
-    ~Game();
+    static Game* Instance();
     int gameLoop();
     void update();
     void render();
+
+  private:
+    Game();
+    ~Game();
+    static Game* instance;
 };
 
 
