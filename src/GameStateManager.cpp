@@ -12,7 +12,12 @@ GameStateManager::GameStateManager() {
 }
 
 GameStateManager::~GameStateManager() {
-
+  instance = nullptr;
+  while (!this->states.empty()) {
+    this->states.top()->cleanup();
+    delete this->states.top();
+    this->states.pop();
+  }
 }
 
 void GameStateManager::insert(GameState* state) {
@@ -24,7 +29,8 @@ void GameStateManager::insert(GameState* state) {
 
 void GameStateManager::extract() {
   if (!this->states.empty()) {
-    this->state.top()->cleanup();
+    this->states.top()->cleanup();
+    delete this->states.top();
     this->states.pop();
   }
 }

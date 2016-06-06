@@ -35,6 +35,7 @@ class Game {
     int gameLoop();
     void update();
     void render();
+    sf::RenderWindow* getWindow();
 
   private:
     Game();

@@ -7,6 +7,7 @@ class GameState {
     virtual void update() = 0;
     virtual void render() = 0;
     virtual void cleanup() = 0;
+    virtual ~GameState() {}
 };
 
 #endif // __GAMESTATE_HPP__

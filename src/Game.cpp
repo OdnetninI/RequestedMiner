@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "MainGameState.hpp"
 #include <iostream>
 
 Game* Game::instance = nullptr;
@@ -12,7 +13,7 @@ Game::Game() {
   this->view.setViewport(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
   this->glContextSettings.antialiasingLevel = 0;
   this->window.create(sf::VideoMode(SCALE_FACTOR*SCREEN_X,SCALE_FACTOR*SCREEN_Y), "Requested Miner", sf::Style::Close | sf::Style::Titlebar , this->glContextSettings);
-  this->window.setView(this->view);
+  //this->window.setView(this->view);
   this->running = true;
   this->stateManager = GameStateManager::Instance();
   this->currentState = nullptr;
@@ -22,10 +23,12 @@ Game::Game() {
   this->actualTick = 0;
   this->frameSkip = 0;
   this->frameTicks = 0;
+
+  this->stateManager->insert(new MainGameState());
 }
 
 Game::~Game() {
-
+  instance = nullptr;
 }
 
 int Game::gameLoop() {
@@ -80,4 +83,8 @@ void Game::render() {
   window.clear();
   if (this->currentState != nullptr) this->currentState->render();
   window.display();
+}
+
+sf::RenderWindow* Game::getWindow() {
+  return &this->window;
 }
