@@ -15,7 +15,7 @@ class Entity {
 
   public:
     Entity();
-    ~Entity();
+    virtual ~Entity();
     void setTexture(sf::Texture* texture);
     void setPosition(int32_t x, int32_t y);
     int32_t getX();
@@ -26,7 +26,7 @@ class Entity {
     void setTexturePos(uint16_t x, uint16_t y);
     uint16_t getTx();
     uint16_t getTy();
-    void update();
+    virtual void update();
     void render(sf::RenderWindow* window);
 
     void toRender (bool doRender);
