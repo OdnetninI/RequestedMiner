@@ -10,13 +10,8 @@ MainGameState::~MainGameState() {
 }
 
 void MainGameState::init() {
-  Entity* entity = new Entity();
-  entity->setPosition(1,1);
-  entity->setSize(32,32);
-  entity->setTexturePos(0,0);
   this->textureManager.create("Player", "Data/test.png");
-  entity->setTexture(this->textureManager.get("Player"));
-  this->entityManager.insert(entity);
+  this->entityManager.create(1,1,32,32,this->textureManager.get("Player"), 0,0);
 }
 
 void MainGameState::update() {

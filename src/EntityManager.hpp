@@ -14,6 +14,7 @@ class EntityManager {
     ~EntityManager();
     uint16_t size();
     void insert(Entity* entity);
+    Entity* create(int32_t x, int32_t y, uint16_t w, uint16_t h, sf::Texture* texture, uint16_t tx = 0, uint16_t ty = 0);
     void update();
     void remove(Entity* entity);
     Entity* next();

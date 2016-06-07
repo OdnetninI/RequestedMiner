@@ -13,10 +13,11 @@ void TextureManager::add(std::string name, sf::Texture* texture) {
   this->textures.insert(std::pair<std::string, sf::Texture*>(name, texture));
 }
 
-void TextureManager::create(std::string name, const char* filename) {
+sf::Texture* TextureManager::create(std::string name, const char* filename) {
   sf::Texture* text = new sf::Texture();
   text->loadFromFile(filename);
   this->textures.insert(std::pair<std::string, sf::Texture*>(name, text));
+  return text;
 }
 
 void TextureManager::remove(std::string name) {

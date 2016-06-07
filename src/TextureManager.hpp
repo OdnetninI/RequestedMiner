@@ -13,7 +13,7 @@ class TextureManager {
     TextureManager();
     ~TextureManager();
     void add(std::string name, sf::Texture* texture);
-    void create(std::string name, const char* filename);
+    sf::Texture* create(std::string name, const char* filename);
     void remove(std::string name);
     sf::Texture* get(std::string name);
 };
