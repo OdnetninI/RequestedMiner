@@ -23,7 +23,8 @@ void MainGameState::init() {
   anim->addFrame(32,0);
   anim->addFrame(64,0);
   anim->addFrame(32,0);
-  player->setAnimation(anim);
+  this->animationManager.add("Player Down", anim);
+  player->setAnimation(this->animationManager.get("Player Down"));
   player->setLoop(true);
   player->play();
   this->entityManager.insert(player);

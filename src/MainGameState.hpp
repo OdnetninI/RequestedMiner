@@ -4,11 +4,13 @@
 #include "GameState.hpp"
 #include "EntityManager.hpp"
 #include "TextureManager.hpp"
+#include "AnimationManager.hpp"
 
 class MainGameState : public GameState {
   private:
     EntityManager entityManager;
     TextureManager textureManager;
+    AnimationManager animationManager;
 
   public:
     MainGameState();
