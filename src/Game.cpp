@@ -10,10 +10,10 @@ Game* Game::Instance() {
 }
 
 Game::Game() {
-  this->view.setViewport(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
+  this->view.reset(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
   this->glContextSettings.antialiasingLevel = 0;
   this->window.create(sf::VideoMode(SCALE_FACTOR*SCREEN_X,SCALE_FACTOR*SCREEN_Y), "Requested Miner", sf::Style::Close | sf::Style::Titlebar , this->glContextSettings);
-  //this->window.setView(this->view);
+  this->window.setView(this->view);
   this->running = true;
   this->stateManager = GameStateManager::Instance();
   this->currentState = nullptr;
@@ -23,6 +23,7 @@ Game::Game() {
   this->actualTick = 0;
   this->frameSkip = 0;
   this->frameTicks = 0;
+  this->isFocused = true;
 
   this->stateManager->insert(new MainGameState());
 }
@@ -73,6 +74,10 @@ void Game::update() {
   while (this->window.pollEvent(this->events)) {
     if (this->events.type == sf::Event::Closed)
       this->running = false;
+    else if (this->events.type == sf::Event::LostFocus)
+      this->isFocused = false;
+    else if (this->events.type == sf::Event::GainedFocus)
+      this->isFocused = true;
   }
 
   if (this->currentState != nullptr) this->currentState->update();
@@ -87,4 +92,8 @@ void Game::render() {
 
 sf::RenderWindow* Game::getWindow() {
   return &this->window;
+}
+
+bool Game::getFocus() {
+  return this->isFocused;
 }

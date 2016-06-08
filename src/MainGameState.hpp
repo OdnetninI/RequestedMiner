@@ -6,11 +6,15 @@
 #include "TextureManager.hpp"
 #include "AnimationManager.hpp"
 
+#include "AnimatedEntity.hpp"
+
 class MainGameState : public GameState {
   private:
     EntityManager entityManager;
     TextureManager textureManager;
     AnimationManager animationManager;
+
+    AnimatedEntity* pickaxe;
 
   public:
     MainGameState();

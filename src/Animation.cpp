@@ -32,3 +32,7 @@ uint16_t Animation::getTy(uint16_t frame) {
   if (frame >= this->size()) return 0;
   return this->frames[frame].y;
 }
+
+void Animation::clear() {
+  this->frames.clear();
+}

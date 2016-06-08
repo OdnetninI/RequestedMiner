@@ -23,6 +23,7 @@ class Animation {
     uint16_t getTx(uint16_t frame);
     uint16_t getTy(uint16_t frame);
     void addFrame (uint16_t tx, uint16_t ty);
+    void clear();
 };
 
 #endif // __ANIMATION_HPP__
