@@ -13,7 +13,7 @@ RM := rm
 RMDIR := rmdir
 
 all: directorios $(OBJ_FILES)
-	$(C++) $(LD_FLAGS) $(OBJ_FILES) -o $(BIN_FILE)
+	$(C++) $(OBJ_FILES) -o $(BIN_FILE) $(LD_FLAGS)
 
 obj/%.o: src/%.cpp
 	$(C++) $(CC_FLAGS) -c -o $@ $<
