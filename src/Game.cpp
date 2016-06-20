@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "MainGameState.hpp"
 #include <iostream>
+#include "Logger.hpp"
 
 Game* Game::instance = nullptr;
 
@@ -10,6 +11,7 @@ Game* Game::Instance() {
 }
 
 Game::Game() {
+  //Logger::Instance().toFile();
   this->view.reset(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
   this->glContextSettings.antialiasingLevel = 0;
   this->window.create(sf::VideoMode(SCALE_FACTOR*SCREEN_X,SCALE_FACTOR*SCREEN_Y), "Requested Miner", sf::Style::Close | sf::Style::Titlebar , this->glContextSettings);
@@ -55,8 +57,8 @@ int Game::gameLoop() {
     else this->frameSkip++;
 
     if (this->ticks - this->oldTick >= 30) {
-      std::cout << "FPS: " << this->frameTicks << std::endl;
-      std::cout << "UPS: " << this->actualTick << std::endl;
+      Logger::Instance() << "FPS: " << this->frameTicks << "\n";
+      Logger::Instance() << "UPS: " << this->actualTick <<  "\n";
       this->frameTicks = 0;
       this->ticks = 0;
       this->actualTick = 0;

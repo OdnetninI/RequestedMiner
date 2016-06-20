@@ -2,6 +2,7 @@
 #define __LOGGER_HPP__
 
 #include <fstream>
+#include <iostream>
 
 #define LOG_FILE "log.log"
 
@@ -9,16 +10,22 @@ class Logger {
   private:
     bool isFile;
     bool logging;
-    std::ofstream file;
+    std::fstream file;
 
   public:
-      static Logger* Instance();
+      static Logger& Instance();
       void toTerminal();
       void toFile();
       void disable();
       void enable();
       template <typename T>
-      Logger* operator<< (T& obj);
+      Logger& operator<< (T& obj) {
+        if (this->logging) {
+          if (this->isFile) this->file << obj;
+          else std::cout << obj;
+        }
+        return *this;
+      }
 
   private:
     static Logger* instance;

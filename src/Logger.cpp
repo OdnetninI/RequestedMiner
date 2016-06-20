@@ -1,18 +1,18 @@
 #include "Logger.hpp"
-#include <iostream>
 
 Logger* Logger::instance = nullptr;
 
-Logger* Logger::Instance() {
+Logger& Logger::Instance() {
   if (!instance) instance = new Logger();
-  return instance;
+  return *instance;
 }
 
 Logger::Logger() {
   this->logging = true;
   this->isFile = false;
-  this->file.open(LOG_FILE);
-  if (this->file.good()) this->isFile = true;
+  this->file.open(LOG_FILE, std::ofstream::out);
+  if (this->file.good() && this->file.is_open())
+    this->isFile = true;
 }
 
 Logger::~Logger() {
@@ -33,13 +33,4 @@ void Logger::disable() {
 
 void Logger::enable() {
   this->logging = true;
-}
-
-template <typename T>
-Logger* Logger::operator<< (T& obj) {
-  if (logging) {
-    if (isFile) file << obj;
-    else std::cout << obj;
-  }
-  return this;
 }
