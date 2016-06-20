@@ -22,7 +22,10 @@ class Logger {
       template <typename T>
       Logger& operator<< (T& obj) {
         if (this->logging) {
-          if (this->isFile) this->file << obj;
+          if (this->isFile) {
+            this->file << obj;
+            this->file.flush();
+          }
           else std::cout << obj;
         }
         return *this;
