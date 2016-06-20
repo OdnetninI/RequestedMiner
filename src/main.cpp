@@ -1,5 +1,9 @@
 #include "Game.hpp"
+#include "Logger.hpp"
 
 int main() {
-    return Game::Instance()->gameLoop();
+  int returnValue = Game::Instance()->gameLoop();
+  Logger::destroy();
+  Game::destroy();
+  return returnValue;
 }

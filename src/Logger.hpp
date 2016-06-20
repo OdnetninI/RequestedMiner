@@ -14,6 +14,7 @@ class Logger {
 
   public:
       static Logger& Instance();
+      static void destroy();
       void toTerminal();
       void toFile();
       void disable();

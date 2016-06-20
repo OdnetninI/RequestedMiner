@@ -7,6 +7,11 @@ Logger& Logger::Instance() {
   return *instance;
 }
 
+void Logger::destroy() {
+  if (instance) delete instance;
+  instance = nullptr;
+}
+
 Logger::Logger() {
   this->logging = true;
   this->isFile = false;

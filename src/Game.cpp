@@ -10,8 +10,16 @@ Game* Game::Instance() {
   return instance;
 }
 
+void Game::destroy() {
+  if (instance) delete instance;
+  instance = nullptr;
+}
+
 Game::Game() {
   //Logger::Instance().toFile();
+  Logger::Instance() << "==============================\n";
+  Logger::Instance() << "=         Game Log           =\n";
+  Logger::Instance() << "==============================\n";
   this->view.reset(sf::FloatRect(0,0,SCREEN_X,SCREEN_Y));
   this->glContextSettings.antialiasingLevel = 0;
   this->window.create(sf::VideoMode(SCALE_FACTOR*SCREEN_X,SCALE_FACTOR*SCREEN_Y), "Requested Miner", sf::Style::Close | sf::Style::Titlebar , this->glContextSettings);

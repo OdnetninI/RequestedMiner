@@ -33,6 +33,7 @@ class Game {
 
   public:
     static Game* Instance();
+    static void destroy();
     int gameLoop();
     void update();
     void render();
