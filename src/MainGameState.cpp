@@ -24,7 +24,7 @@ void MainGameState::init() {
   pickaxe = new AnimatedEntity();
   pickaxe->setPosition(64,64);
   pickaxe->setSize(32,32);
-  pickaxe->setTimePerFrame(3);
+  pickaxe->setTimePerFrame(6);
   pickaxe->setAnimation(anim);
   pickaxe->setLoop(true);
   pickaxe->play();

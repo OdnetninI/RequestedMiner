@@ -6,11 +6,8 @@
 #include "GameState.hpp"
 #include "GameStateManager.hpp"
 
-#define NO_ERRORS 0
 #define SCREEN_X 240
 #define SCREEN_Y 160
-#define SCALE_FACTOR 2
-#define MAX_FRAMESKIP 10
 
 class Game {
   private:

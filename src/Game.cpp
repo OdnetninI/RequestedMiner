@@ -3,6 +3,13 @@
 #include <iostream>
 #include "Logger.hpp"
 
+#define NO_ERRORS 0
+#define SCALE_FACTOR 3
+#define MAX_FRAMESKIP 10
+#define FPS_UPS_SHOWN 1
+#define UPS 60
+#define UPS_TICK_TIME 1000/UPS
+
 Game* Game::instance = nullptr;
 
 Game* Game::Instance() {
@@ -16,7 +23,7 @@ void Game::destroy() {
 }
 
 Game::Game() {
-  //Logger::Instance().toFile();
+  Logger::Instance().toTerminal();
   Logger::Instance() << "==============================\n";
   Logger::Instance() << "=         Game Log           =\n";
   Logger::Instance() << "==============================\n";
@@ -47,7 +54,7 @@ int Game::gameLoop() {
 
     this->currentState = this->stateManager->getState();
 
-    if (this->gameSpeedTimer.getElapsedTime().asMilliseconds() >= 33) {
+    if (this->gameSpeedTimer.getElapsedTime().asMilliseconds() >= UPS_TICK_TIME) {
       this->ticks++;
       this->gameSpeedTimer.restart();
     }
@@ -64,9 +71,11 @@ int Game::gameLoop() {
     }
     else this->frameSkip++;
 
-    if (this->ticks - this->oldTick >= 30) {
-      Logger::Instance() << "FPS: " << this->frameTicks << "\n";
-      Logger::Instance() << "UPS: " << this->actualTick <<  "\n";
+    if (this->ticks - this->oldTick >= UPS) {
+      #if FPS_UPS_SHOWN == 1
+        Logger::Instance() << "FPS: " << this->frameTicks << "\n";
+        Logger::Instance() << "UPS: " << this->actualTick <<  "\n";
+      #endif
       this->frameTicks = 0;
       this->ticks = 0;
       this->actualTick = 0;
