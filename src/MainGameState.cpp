@@ -12,6 +12,8 @@ MainGameState::~MainGameState() {
 
 void MainGameState::init() {
   this->textureManager.create("Pickaxe", "Data/Pick.png");
+  this->textureManager.create("Tileset", "Data/tileset.png");
+  this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
   anim->addFrame(0,0);
   anim->addFrame(0,32);
@@ -46,7 +48,9 @@ void MainGameState::update() {
 }
 
 void MainGameState::render() {
+  this->tiledScreen.drawUnder(Game::Instance()->getWindow());
   this->entityManager.draw(Game::Instance()->getWindow());
+  this->tiledScreen.drawUpper(Game::Instance()->getWindow());
 }
 
 void MainGameState::cleanup() {

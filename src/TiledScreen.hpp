@@ -15,13 +15,19 @@
 // Down Layers: layers down sprites
 class TiledScreen {
   private:
-    sf::Texture* tileset = nullptr;
+    sf::RenderStates renderStates;
     sf::Vertex up[UP_LAYERS][MAP_WIDTH*MAP_HEIGTH*VERS_PER_TILE];
     sf::Vertex down[DOWN_LAYERS][MAP_WIDTH*MAP_HEIGTH*VERS_PER_TILE];
+
+    void vertexSet (sf::Vertex vertex[], uint16_t x, uint16_t y, uint16_t tx, uint16_t ty);
 
   public:
     TiledScreen();
     ~TiledScreen();
+
+    void drawUnder (sf::RenderWindow *window);
+    void drawUpper (sf::RenderWindow *window);
+    void setTileset (sf::Texture *texture);
 };
 
 #endif // __TILEDSCREEN_HPP__

@@ -5,6 +5,7 @@
 #include "EntityManager.hpp"
 #include "TextureManager.hpp"
 #include "AnimationManager.hpp"
+#include "TiledScreen.hpp"
 
 #include "AnimatedEntity.hpp"
 
@@ -13,6 +14,7 @@ class MainGameState : public GameState {
     EntityManager entityManager;
     TextureManager textureManager;
     AnimationManager animationManager;
+    TiledScreen tiledScreen;
 
     AnimatedEntity* pickaxe;
 
