@@ -14,8 +14,9 @@ class MainGameState : public GameState {
     EntityManager entityManager;
     TextureManager textureManager;
     AnimationManager animationManager;
-    TiledScreen tiledScreen;
 
+    TiledScreen tiledScreen;
+    int8_t sx, sy;
     AnimatedEntity* pickaxe;
 
   public:

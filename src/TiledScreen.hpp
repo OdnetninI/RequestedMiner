@@ -13,7 +13,7 @@
 
 // Up layers: layers over sprites
 // Down Layers: layers down sprites
-class TiledScreen {
+class TiledScreen : private sf::Transformable {
   private:
     sf::RenderStates renderStates;
     sf::Vertex up[UP_LAYERS][MAP_WIDTH*MAP_HEIGTH*VERS_PER_TILE];
@@ -28,6 +28,9 @@ class TiledScreen {
     void drawUnder (sf::RenderWindow *window);
     void drawUpper (sf::RenderWindow *window);
     void setTileset (sf::Texture *texture);
+    void setPos (int8_t x, int8_t y);
+    void setDownTile (uint16_t layer, uint16_t x, uint16_t y, uint16_t tx, uint16_t ty);
+    void setUpTile (uint16_t layer, uint16_t x, uint16_t y, uint16_t tx, uint16_t ty);
 };
 
 #endif // __TILEDSCREEN_HPP__

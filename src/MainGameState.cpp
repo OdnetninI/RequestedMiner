@@ -3,7 +3,8 @@
 #include "AnimatedEntity.hpp"
 
 MainGameState::MainGameState() {
-
+  sx = 0;
+  sy = 0;
 }
 
 MainGameState::~MainGameState() {
@@ -45,6 +46,9 @@ void MainGameState::update() {
   }
 
   this->entityManager.update();
+  sx = (sx - 1) % TILE_SIZE;
+  sy = (sy - 1) % TILE_SIZE;
+  this->tiledScreen.setPos(sx, sy);
 }
 
 void MainGameState::render() {
