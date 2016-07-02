@@ -2,7 +2,7 @@
 #include "Game.hpp"
 #include "AnimatedEntity.hpp"
 
-MainGameState::MainGameState() {
+MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   sx = 0;
   sy = 0;
 }
@@ -43,11 +43,19 @@ void MainGameState::update() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
       pickaxe->play();
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+      sx--;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+      sx++;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+      sy++;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+      sy--;
   }
 
   this->entityManager.update();
-  sx = (sx - 1) % TILE_SIZE;
-  sy = (sy - 1) % TILE_SIZE;
+  sx = sx % TILE_SIZE;
+  sy = sy % TILE_SIZE;
   this->tiledScreen.setPos(sx, sy);
 }
 

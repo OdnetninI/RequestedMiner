@@ -21,7 +21,7 @@ if [ -f $HPP_FILE ]; then
   exit 3
 fi
 
-echo -e "#include <$1.hpp>\n" > $CPP_FILE
+echo -e "#include \"$1.hpp\"\n" > $CPP_FILE
 
 IFNDEF=$(echo $1 | tr '[:lower:]' '[:upper:]')
 echo -e "#ifndef __""$IFNDEF""_HPP__" > $HPP_FILE

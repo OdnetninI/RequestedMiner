@@ -71,7 +71,7 @@ int Game::gameLoop() {
     }
     else this->frameSkip++;
 
-    if (this->ticks - this->oldTick >= UPS) {
+    if (this->ticks - this->oldTick >= UPS-1) {
       #if FPS_UPS_SHOWN == 1
         Logger::Instance() << "FPS: " << this->frameTicks << "\n";
         Logger::Instance() << "UPS: " << this->actualTick <<  "\n";

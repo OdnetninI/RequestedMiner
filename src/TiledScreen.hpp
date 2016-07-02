@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "WorldTilesRetriever.hpp"
 
 #define TILE_SIZE 16
 #define MAP_WIDTH ((SCREEN_X/TILE_SIZE)+2)
@@ -20,9 +21,10 @@ class TiledScreen : private sf::Transformable {
     sf::Vertex down[DOWN_LAYERS][MAP_WIDTH*MAP_HEIGTH*VERS_PER_TILE];
 
     void vertexSet (sf::Vertex vertex[], uint16_t x, uint16_t y, uint16_t tx, uint16_t ty);
+    WorldTilesRetriever* tileRetriever;
 
   public:
-    TiledScreen();
+    TiledScreen(WorldTilesRetriever* tileRetriever);
     ~TiledScreen();
 
     void drawUnder (sf::RenderWindow *window);

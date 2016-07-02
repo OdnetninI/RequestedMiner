@@ -1,19 +1,20 @@
 #include "TiledScreen.hpp"
 
-TiledScreen::TiledScreen() {
+TiledScreen::TiledScreen(WorldTilesRetriever* tileRetriever) {
+  this->tileRetriever = tileRetriever;
   for (int16_t x = 0; x < MAP_WIDTH; x++) {
     for (int16_t y = 0; y < MAP_HEIGTH; y++) {
-      for (int16_t l = 0; l < UP_LAYERS; l++)
-        this->vertexSet(this->up[l], x, y, 0, 0);
-      for (int16_t l = 0; l < DOWN_LAYERS; l++)
-        this->vertexSet(this->down[l], x, y, 0, 0);
+      for (int16_t l = 0; l < UP_LAYERS; l++) {
+        sf::Vector2u tile = this->tileRetriever->getTile(true, l, x, y);
+        this->vertexSet(this->up[l], x, y, tile.x, tile.y);
+      }
+      for (int16_t l = 0; l < DOWN_LAYERS; l++) {
+        sf::Vector2u tile = this->tileRetriever->getTile(false, l, x, y);
+        this->vertexSet(this->down[l], x, y, tile.x, tile.y);
+      }
     }
   }
-  this->vertexSet(this->down[0], 1,1, 0,1);
-  this->vertexSet(this->down[0], 2,1, 1,0);
-  this->vertexSet(this->down[0], 1,2, 1,0);
-  this->vertexSet(this->down[0], 2,2, 0,1);
-  this->vertexSet(this->down[1], 2,2, 2,0);
+
 }
 
 void TiledScreen::vertexSet(sf::Vertex vertex[], uint16_t x, uint16_t y, uint16_t tx, uint16_t ty) {

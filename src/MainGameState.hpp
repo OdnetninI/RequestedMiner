@@ -8,6 +8,7 @@
 #include "TiledScreen.hpp"
 
 #include "AnimatedEntity.hpp"
+#include "WorldTilesRetriever.hpp"
 
 class MainGameState : public GameState {
   private:
@@ -15,6 +16,7 @@ class MainGameState : public GameState {
     TextureManager textureManager;
     AnimationManager animationManager;
 
+    WorldTilesRetriever tileRetriever;
     TiledScreen tiledScreen;
     int8_t sx, sy;
     AnimatedEntity* pickaxe;
