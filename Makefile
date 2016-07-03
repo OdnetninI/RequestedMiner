@@ -7,7 +7,7 @@ C++ := g++
 CPP_FILES := $(wildcard src/*.cpp)
 OBJ_FILES := $(addprefix obj/,$(notdir $(CPP_FILES:.cpp=.o)))
 LD_FLAGS := -lsfml-graphics -lsfml-window -lsfml-system
-CC_FLAGS := -std=c++14 -Werror -Wall
+CC_FLAGS := -std=c++14 -Werror -Wall -O3
 BIN_FILE := bin/RequestedMiner
 RM := rm
 RMDIR := rmdir

@@ -57,6 +57,7 @@ void MainGameState::update() {
   sx = sx % TILE_SIZE;
   sy = sy % TILE_SIZE;
   this->tiledScreen.setPos(sx, sy);
+  this->tiledScreen.update(0,0);
 }
 
 void MainGameState::render() {

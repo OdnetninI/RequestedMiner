@@ -27,6 +27,7 @@ class TiledScreen : private sf::Transformable {
     TiledScreen(WorldTilesRetriever* tileRetriever);
     ~TiledScreen();
 
+    void update (uint64_t real_x, uint64_t real_y);
     void drawUnder (sf::RenderWindow *window);
     void drawUpper (sf::RenderWindow *window);
     void setTileset (sf::Texture *texture);
