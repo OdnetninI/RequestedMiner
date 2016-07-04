@@ -23,7 +23,7 @@ class Map {
 		~Map();
 		sf::Vector2u getTile (bool up, uint16_t l, uint64_t x, uint16_t y);
 		void addAyacente (Map* m);
-		void load ();
+		void load (bool up, uint16_t layer, const char* filename);
 };
 
 #endif // __MAP_HPP__

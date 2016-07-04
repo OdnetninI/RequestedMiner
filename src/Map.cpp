@@ -42,18 +42,20 @@ void Map::addAyacente (Map* m) {
 }
 
 #include <fstream>
+#include "Logger.hpp"
 
 void Map::loadFromFile (const char* filename, sf::Vector2u** data) {
   std::ifstream file (filename);
 
   if (!file.good()) {
     file.close();
+    Logger::Instance() << "ERROR\n";
     return;
   }
 
   for (uint64_t y = 0; y < h; y++) {
     for (uint64_t x = 0; x < w; x++) {
-      uint16_t tile = 0;
+      uint16_t tile = -1;
       char z;
       if (x != w-1) file >> tile >> z;
       else file >> tile;
@@ -65,9 +67,7 @@ void Map::loadFromFile (const char* filename, sf::Vector2u** data) {
   file.close();
 }
 
-void Map::load () {
-  loadFromFile("Data/Pallet_Town_Down_0.csv", down[0]);
-  loadFromFile("Data/Pallet_Town_Down_1.csv", down[1]);
-  loadFromFile("Data/Pallet_Town_Up_0.csv", up[0]);
-  loadFromFile("Data/Pallet_Town_Up_1.csv", up[1]);
+void Map::load (bool up, uint16_t layer, const char* filename) {
+  if (up) loadFromFile(filename, this->up[layer]);
+  else loadFromFile(filename, down[layer]);
 }

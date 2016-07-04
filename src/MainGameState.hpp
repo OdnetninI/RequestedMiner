@@ -24,6 +24,7 @@ class MainGameState : public GameState {
     AnimatedEntity* pickaxe;
 
     Map* pallet;
+    Map* route1;
 
   public:
     MainGameState();

@@ -5,16 +5,30 @@
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   sx = 0;
   sy = 0;
-  x = 0;
-  y = 0;
+  x = 1000;
+  y = 1000;
 
-  pallet = new Map(0,20,0,18);
-  pallet->load();
+  route1 = new Map(991,1030,900,999);
+  route1->load(false, 0, "Data/Route_1_Down_0.csv");
+  route1->load(false, 1, "Data/Route_1_Down_1.csv");
+  route1->load(true, 0, "Data/Route_1_Up_0.csv");
+  route1->load(true, 1, "Data/Route_1_Up_1.csv");
+
+  pallet = new Map(1000,1020,1000,1018);
+  pallet->load(false, 0, "Data/Pallet_Town_Down_0.csv");
+  pallet->load(false, 1, "Data/Pallet_Town_Down_1.csv");
+  pallet->load(true, 0, "Data/Pallet_Town_Up_0.csv");
+  pallet->load(true, 1, "Data/Pallet_Town_Up_1.csv");
+
+  pallet->addAyacente(route1);
+  route1->addAyacente(pallet);
   tileRetriever.posFinder.insertar(pallet);
+  tileRetriever.posFinder.insertar(route1);
 }
 
 MainGameState::~MainGameState() {
   delete pallet;
+  delete route1;
 }
 
 void MainGameState::init() {
@@ -40,6 +54,7 @@ void MainGameState::init() {
   this->entityManager.insert(pickaxe);
 }
 
+#include "Logger.hpp"
 void MainGameState::update() {
 
   if (Game::Instance()->getFocus()) {
