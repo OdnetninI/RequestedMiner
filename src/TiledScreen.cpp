@@ -2,8 +2,6 @@
 
 TiledScreen::TiledScreen(WorldTilesRetriever* tileRetriever) {
   this->tileRetriever = tileRetriever;
-  this->update(0,0);
-
 }
 
 void TiledScreen::vertexSet(sf::Vertex vertex[], uint16_t x, uint16_t y, uint16_t tx, uint16_t ty) {

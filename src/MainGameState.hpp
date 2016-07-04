@@ -9,6 +9,7 @@
 
 #include "AnimatedEntity.hpp"
 #include "WorldTilesRetriever.hpp"
+#include "Map.hpp"
 
 class MainGameState : public GameState {
   private:
@@ -19,7 +20,10 @@ class MainGameState : public GameState {
     WorldTilesRetriever tileRetriever;
     TiledScreen tiledScreen;
     int8_t sx, sy;
+    uint64_t x, y;
     AnimatedEntity* pickaxe;
+
+    Map* pallet;
 
   public:
     MainGameState();

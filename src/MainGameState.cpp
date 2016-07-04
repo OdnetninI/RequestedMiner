@@ -5,10 +5,16 @@
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   sx = 0;
   sy = 0;
+  x = 0;
+  y = 0;
+
+  pallet = new Map(0,20,0,18);
+  pallet->load();
+  tileRetriever.posFinder.insertar(pallet);
 }
 
 MainGameState::~MainGameState() {
-
+  delete pallet;
 }
 
 void MainGameState::init() {
@@ -44,20 +50,20 @@ void MainGameState::update() {
       pickaxe->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-      sx--;
+      x++;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-      sx++;
+      x--;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-      sy++;
+      y--;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-      sy--;
+      y++;
   }
 
   this->entityManager.update();
-  sx = sx % TILE_SIZE;
-  sy = sy % TILE_SIZE;
+  sx = x % TILE_SIZE;
+  sy = y % TILE_SIZE;
   this->tiledScreen.setPos(sx, sy);
-  this->tiledScreen.update(0,0);
+  this->tiledScreen.update(x,y);
 }
 
 void MainGameState::render() {
