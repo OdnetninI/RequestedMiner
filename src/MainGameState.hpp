@@ -21,7 +21,7 @@ class MainGameState : public GameState {
     TiledScreen tiledScreen;
     int8_t sx, sy;
     uint64_t x, y;
-    AnimatedEntity* pickaxe;
+    AnimatedEntity* player;
 
     Map* pallet;
     Map* route1;

@@ -32,46 +32,72 @@ MainGameState::~MainGameState() {
 }
 
 void MainGameState::init() {
-  this->textureManager.create("Pickaxe", "Data/Pick.png");
+  this->textureManager.create("Player", "Data/test.png");
   this->textureManager.create("Tileset", "Data/tileset.png");
   this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
+  anim->addFrame(16,0);
   anim->addFrame(0,0);
+  anim->addFrame(16,0);
+  anim->addFrame(32,0);
+  anim->setTexture(this->textureManager.get("Player"));
+  this->animationManager.add("Down", anim);
+  anim = new Animation();
+  anim->addFrame(16,16);
+  anim->addFrame(0,16);
+  anim->addFrame(16,16);
+  anim->addFrame(32,16);
+  anim->setTexture(this->textureManager.get("Player"));
+  this->animationManager.add("Left", anim);
+  anim = new Animation();
+  anim->addFrame(16,32);
   anim->addFrame(0,32);
-  anim->addFrame(0,64);
-  anim->addFrame(0,96);
-  anim->addFrame(0,64);
-  anim->addFrame(0,32);
-  anim->setTexture(this->textureManager.get("Pickaxe"));
-  this->animationManager.add("Pick", anim);
-  pickaxe = new AnimatedEntity();
-  pickaxe->setPosition(64,64);
-  pickaxe->setSize(32,32);
-  pickaxe->setTimePerFrame(6);
-  pickaxe->setAnimation(anim);
-  pickaxe->setLoop(true);
-  pickaxe->play();
-  this->entityManager.insert(pickaxe);
+  anim->addFrame(16,32);
+  anim->addFrame(32,32);
+  anim->setTexture(this->textureManager.get("Player"));
+  this->animationManager.add("Right", anim);
+  anim = new Animation();
+  anim->addFrame(16,48);
+  anim->addFrame(0,48);
+  anim->addFrame(16,48);
+  anim->addFrame(32,48);
+  anim->setTexture(this->textureManager.get("Player"));
+  this->animationManager.add("Up", anim);
+  player = new AnimatedEntity();
+  player->setPosition(64,64);
+  player->setSize(16,16);
+  player->setTimePerFrame(6);
+  player->setAnimation(this->animationManager.get("Down"));
+  player->setLoop(true);
+  player->stop();
+  this->entityManager.insert(player);
 }
 
 #include "Logger.hpp"
 void MainGameState::update() {
 
   if (Game::Instance()->getFocus()) {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P)) {
-      pickaxe->pause();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
-      pickaxe->play();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+    player->stop();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
       x++;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+      player->setAnimation(this->animationManager.get("Right"));
+      player->play();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
       x--;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+      player->setAnimation(this->animationManager.get("Left"));
+      player->play();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
       y--;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+      player->setAnimation(this->animationManager.get("Up"));
+      player->play();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
       y++;
+      player->setAnimation(this->animationManager.get("Down"));
+      player->play();
+    }
   }
 
   this->entityManager.update();
