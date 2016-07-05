@@ -8,6 +8,9 @@ MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   x = 1000;
   y = 1000;
 
+  verde = new Map(900,1040,800,899);
+  verde->load(false, 0, "Data/Pallet_Town_Down_0.csv");
+
   route1 = new Map(991,1030,900,999);
   route1->load(false, 0, "Data/Route_1_Down_0.csv");
   route1->load(false, 1, "Data/Route_1_Down_1.csv");
@@ -22,13 +25,17 @@ MainGameState::MainGameState():tiledScreen(&tileRetriever) {
 
   pallet->addAyacente(route1);
   route1->addAyacente(pallet);
+  route1->addAyacente(verde);
+  verde->addAyacente(route1);
   tileRetriever.posFinder.insertar(pallet);
   tileRetriever.posFinder.insertar(route1);
+  tileRetriever.posFinder.insertar(verde);
 }
 
 MainGameState::~MainGameState() {
   delete pallet;
   delete route1;
+  delete verde;
 }
 
 void MainGameState::init() {
@@ -103,6 +110,7 @@ void MainGameState::update() {
   this->entityManager.update();
   sx = x % TILE_SIZE;
   sy = y % TILE_SIZE;
+  this->pallet->update();
   this->tiledScreen.setPos(sx, sy);
   this->tiledScreen.update(x,y);
 }

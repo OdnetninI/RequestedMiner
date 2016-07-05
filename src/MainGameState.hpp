@@ -25,6 +25,7 @@ class MainGameState : public GameState {
 
     Map* pallet;
     Map* route1;
+    Map* verde;
 
   public:
     MainGameState();

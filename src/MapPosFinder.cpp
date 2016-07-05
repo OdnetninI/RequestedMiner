@@ -16,7 +16,7 @@ bool MapPosFinder::isInside ( Map* m, uint64_t x, uint64_t y) {
   if (x < m->minX || x > m->maxX || y < m->minY || y > m->maxY) return false;
   else return true;
 }
-#include <iostream>
+
 Map* MapPosFinder::buscar (uint64_t x, uint64_t y) {
 
   if ( last != nullptr) {
@@ -46,7 +46,7 @@ Map* MapPosFinder::buscar (uint64_t x, uint64_t y) {
     }
 
   } while (o == nullptr && i != lista.begin());
-  
+
   if (o == nullptr) return nullptr;
   last = o;
   return o;

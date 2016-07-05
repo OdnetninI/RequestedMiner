@@ -6,7 +6,7 @@
 #define NO_ERRORS 0
 #define SCALE_FACTOR 3
 #define MAX_FRAMESKIP 10
-#define FPS_UPS_SHOWN 1
+#define FPS_UPS_SHOWN 0
 #define UPS 60
 #define UPS_TICK_TIME 1000/UPS
 

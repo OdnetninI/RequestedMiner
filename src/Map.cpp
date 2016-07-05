@@ -7,6 +7,7 @@ Map::Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY) {
   this->maxY = maxY;
   this->w = maxX - minX + 1;
   this->h = maxY - minY + 1;
+  this->animatedTimes = 2;
   for (uint16_t l = 0; l < UP_LAYERS; l++) {
     up[l] = new sf::Vector2u*[this->h];
     for (uint64_t i = 0; i < this->h; i++)
@@ -35,6 +36,38 @@ Map::~Map() {
 sf::Vector2u Map::getTile (bool up, uint16_t l, uint64_t x, uint16_t y) {
   if (up) return this->up[l][y-minY][x-minX];
   else return down[l][y-minY][x-minX];
+}
+
+void Map::setTile (bool up, uint16_t l, uint64_t x, uint16_t y, sf::Vector2u tile) {
+  if (up ) this->up[l][y-minY][x-minX] = tile;
+  else down[l][y-minY][x-minX] = tile;
+}
+
+uint16_t Map::getAnimationTime () {
+  return animatedTimes;
+}
+
+void Map::update() {
+  if (animatedTimes == 0) {
+    for (uint64_t x = 0; x < this->w; x++) {
+      for (uint64_t y = 0; y < this->h; y++) {
+        for (uint16_t l = 0; l < UP_LAYERS; l++) {
+          if (up[l][y][x].x == 4 && up[l][y][x].y == 0)
+            up[l][y][x] = sf::Vector2u(2,2);
+          else if (up[l][y][x].x == 2 && up[l][y][x].y == 2)
+            up[l][y][x] = sf::Vector2u(4,0);
+        }
+        for (uint16_t l = 0; l < DOWN_LAYERS; l++) {
+          if (down[l][y][x].x == 4 && down[l][y][x].y == 0)
+            down[l][y][x] = sf::Vector2u(2,2);
+          else if (down[l][y][x].x == 2 && down[l][y][x].y == 2)
+            down[l][y][x] = sf::Vector2u(4,0);
+        }
+      }
+    }
+    animatedTimes = 60;
+  }
+  this->animatedTimes--;
 }
 
 void Map::addAyacente (Map* m) {
