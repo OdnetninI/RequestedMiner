@@ -36,8 +36,8 @@ void TiledScreen::setDownTile(uint16_t layer, uint16_t x, uint16_t y, uint16_t t
 }
 
 void TiledScreen::update (uint64_t real_x, uint64_t real_y) {
-  for (int16_t x = 0; x < MAP_WIDTH; x++) {
-    for (int16_t y = 0; y < MAP_HEIGTH; y++) {
+  for (int16_t y = 0; y < MAP_HEIGTH; y++) {
+    for (int16_t x = 0; x < MAP_WIDTH; x++) {
       for (int16_t l = 0; l < UP_LAYERS; l++) {
         sf::Vector2u tile = this->tileRetriever->getTile(true, l, x+real_x, y+real_y);
         this->vertexSet(this->up[l], x, y, tile.x, tile.y);
