@@ -6,15 +6,17 @@
 
 class Camera {
   private:
-    sf::Vector<uint64_t> position;
-    MapEntity* lockedEntity;
+    sf::Vector2<uint64_t> position;
+    MapEntity* lockedEntity = nullptr;
 
   public:
-    void setPosition(sf::Vector<uint64_t> pos);
+    void setPosition(sf::Vector2<uint64_t> pos);
     void setPosition(uint64_t x, uint64_t y);
     void move(uint64_t x, uint64_t y);
     void lockEntity(MapEntity* entity);
-    sf::Vector<uint64_t> getPosition();
+    void unlockEntity();
+    void update();
+    sf::Vector2<uint64_t> getPosition();
     uint64_t getX();
     uint64_t getY();
 };

@@ -50,7 +50,7 @@ void TiledScreen::update (uint64_t real_x, uint64_t real_y) {
   }
 }
 
-void TiledScreen::update (sf::Vector<uint64_t> realpos) {
+void TiledScreen::update (sf::Vector2<uint64_t> realpos) {
   this->update(realpos.x, realpos.y);
 }
 
