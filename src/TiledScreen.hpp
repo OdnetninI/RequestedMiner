@@ -5,9 +5,8 @@
 #include "Game.hpp"
 #include "WorldTilesRetriever.hpp"
 
-#define TILE_SIZE 16
-#define MAP_WIDTH ((SCREEN_X/TILE_SIZE)+2)
-#define MAP_HEIGTH ((SCREEN_Y/TILE_SIZE)+2)
+#define MAP_WIDTH (TILES_X+2)
+#define MAP_HEIGTH (TILES_Y+2)
 #define UP_LAYERS 2
 #define DOWN_LAYERS 2
 #define VERS_PER_TILE 4
