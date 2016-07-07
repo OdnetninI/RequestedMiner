@@ -14,7 +14,7 @@ MapPosFinder::minYNode MapPosFinder::createB (Map* objeto) {
 
 bool MapPosFinder::isInside ( Map* m, uint64_t x, uint64_t y) {
   if (x < m->minX || x > m->maxX || y < m->minY || y > m->maxY) return false;
-  else return true;
+  return true;
 }
 
 Map* MapPosFinder::buscar (uint64_t x, uint64_t y) {
