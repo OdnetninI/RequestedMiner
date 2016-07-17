@@ -1,3 +1,4 @@
+// TODO: REMOVE THIS
 #ifndef __ENTITYMANAGER_HPP__
 #define __ENTITYMANAGER_HPP__
 

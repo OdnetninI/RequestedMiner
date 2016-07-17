@@ -6,26 +6,30 @@
 #include "TextureManager.hpp"
 #include "AnimationManager.hpp"
 #include "TiledScreen.hpp"
+#include "Camera.hpp"
 
 #include "AnimatedEntity.hpp"
 #include "WorldTilesRetriever.hpp"
 #include "Map.hpp"
 
+#include "MapEntity.hpp"
+
 class MainGameState : public GameState {
   private:
-    EntityManager entityManager;
     TextureManager textureManager;
     AnimationManager animationManager;
 
     WorldTilesRetriever tileRetriever;
     TiledScreen tiledScreen;
-    int8_t sx, sy;
     uint64_t x, y;
     AnimatedEntity* player;
 
     Map* pallet;
     Map* route1;
     Map* verde;
+
+    Camera camera;
+    MapEntity mapBall;
 
   public:
     MainGameState();

@@ -1,3 +1,5 @@
+// TODO: REMOVE THIS
+
 #include "EntityManager.hpp"
 
 EntityManager::EntityManager() {

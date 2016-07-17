@@ -35,15 +35,20 @@ void TiledScreen::setDownTile(uint16_t layer, uint16_t x, uint16_t y, uint16_t t
   quad[3].texCoords = sf::Vector2f(tx * TILE_SIZE, (ty + 1) * TILE_SIZE);
 }
 
+#include "Logger.hpp"
+// NOTE: Solved strange tile movement, but maximum tile of world has been divided by TILE_SIZE
 void TiledScreen::update (uint64_t real_x, uint64_t real_y) {
+  uint64_t g_realX = ((uint64_t)(real_x / TILE_SIZE));
+  uint64_t g_realY = ((uint64_t)(real_y / TILE_SIZE));
+  //Logger::Instance() << real_x << " " << real_y << " " << g_realX << " " << g_realY << "\n";
   for (int16_t y = 0; y < MAP_HEIGTH; y++) {
     for (int16_t x = 0; x < MAP_WIDTH; x++) {
       for (int16_t l = 0; l < UP_LAYERS; l++) {
-        sf::Vector2u tile = this->tileRetriever->getTile(true, l, x+real_x, y+real_y);
+        sf::Vector2u tile = this->tileRetriever->getTile(true, l, x + g_realX, y + g_realY);
         this->vertexSet(this->up[l], x, y, tile.x, tile.y);
       }
       for (int16_t l = 0; l < DOWN_LAYERS; l++) {
-        sf::Vector2u tile = this->tileRetriever->getTile(false, l, x+real_x, y+real_y);
+        sf::Vector2u tile = this->tileRetriever->getTile(false, l, x + g_realX, y + g_realY);
         this->vertexSet(this->down[l], x, y, tile.x, tile.y);
       }
     }

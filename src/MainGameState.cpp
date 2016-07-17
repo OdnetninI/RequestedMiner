@@ -3,12 +3,9 @@
 #include "AnimatedEntity.hpp"
 
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
-  sx = 0;
-  sy = 0;
-  x = 1000;
-  y = 1000;
+  this->camera.setPosition(1000*16,1000*16);
 
-  verde = new Map(900,1040,800,899);
+  verde = new Map(990,1040,1019,1049);
   verde->load(false, 0, "Data/Pallet_Town_Down_0.csv");
 
   route1 = new Map(991,1030,900,999);
@@ -37,10 +34,17 @@ MainGameState::~MainGameState() {
   delete route1;
   delete verde;
 }
-
+#include "Logger.hpp"
 void MainGameState::init() {
   this->textureManager.create("Player", "Data/test.png");
   this->textureManager.create("Tileset", "Data/tileset.png");
+  this->textureManager.create("Ball", "Data/ball.png");
+
+  mapBall.getEntity().setTexture(this->textureManager.get("Ball"));
+  mapBall.getEntity().setSize(24,24);
+  mapBall.getEntity().setTexturePos(0,0);
+  mapBall.setCamera(&camera);
+
   this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
   anim->addFrame(16,0);
@@ -77,47 +81,49 @@ void MainGameState::init() {
   player->setAnimation(this->animationManager.get("Down"));
   player->setLoop(true);
   player->stop();
-  this->entityManager.insert(player);
 }
 
 #include "Logger.hpp"
 void MainGameState::update() {
 
   if (Game::Instance()->getFocus()) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+      Game::Instance()->getWindow()->close();
     player->stop();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      x++;
+      camera.move(1,0);
       player->setAnimation(this->animationManager.get("Right"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      x--;
+      camera.move(-1,0);
       player->setAnimation(this->animationManager.get("Left"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-      y--;
+      camera.move(0,-1);
       player->setAnimation(this->animationManager.get("Up"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-      y++;
+      camera.move(0,1);
       player->setAnimation(this->animationManager.get("Down"));
       player->play();
     }
   }
 
-  this->entityManager.update();
-  sx = x % TILE_SIZE;
-  sy = y % TILE_SIZE;
+  this->player->update();
   this->pallet->update();
-  this->tiledScreen.setPos(sx, sy);
-  this->tiledScreen.update(x,y);
+  this->camera.update();
+  mapBall.update();
+  this->tiledScreen.setPos(-(camera.getX() % TILE_SIZE), -(camera.getY() % TILE_SIZE));
+  this->tiledScreen.update(camera.getX(), camera.getY());
 }
 
 void MainGameState::render() {
   this->tiledScreen.drawUnder(Game::Instance()->getWindow());
-  this->entityManager.draw(Game::Instance()->getWindow());
+  this->player->render(Game::Instance()->getWindow());
+  mapBall.getEntity().render(Game::Instance()->getWindow());
   this->tiledScreen.drawUpper(Game::Instance()->getWindow());
 }
 

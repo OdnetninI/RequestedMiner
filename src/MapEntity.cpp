@@ -1,5 +1,56 @@
 #include "MapEntity.hpp"
+#include "Camera.hpp"
+#include "Game.hpp"
 
 sf::Vector2<uint64_t> MapEntity::getPosition() {
   return this->position;
 }
+
+MapEntity::MapEntity() {
+  position.x = 1000*16;
+  position.y = 1000*16;
+  camera = nullptr;
+}
+
+MapEntity::~MapEntity() {
+
+}
+
+void MapEntity::setCamera(Camera* camera) {
+  this->camera = camera;
+}
+
+void MapEntity::update () {
+  if (camera) {
+    int32_t screenPosX = this->position.x - camera->getPosition().x;
+    int32_t screenPosY = this->position.y - camera->getPosition().y;
+    this->entity.setPosition(screenPosX, screenPosY);
+    if (screenPosX < -this->entity.getW() || screenPosY < -this->entity.getH() || screenPosX > SCREEN_X || screenPosY > SCREEN_Y)
+      this->entity.toRender(false);
+    else this->entity.toRender(true);
+  }
+  this->entity.update();
+}
+
+Entity& MapEntity::getEntity() {
+  return entity;
+}
+
+
+/*
+1000,1000
+ -------------------------
+ |                       |
+ |                       |
+ |                       |
+ -------------------------
+ScreenPos = RealPos - Camera
+1000 ------------------ 1000                0
+1000 ------------------ 1001                -1
+1001 ------------------ 1000                1
+1000 ------------------ 1025                -25
+1025 ------------------ 1000                25
+
+*/
+
+// TODO: Why Entity is X and Y and others are sf::Vector2<> ?

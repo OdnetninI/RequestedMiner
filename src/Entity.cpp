@@ -57,7 +57,8 @@ void Entity::setTexture(sf::Texture* texture) {
 }
 
 void Entity::render(sf::RenderWindow* window) {
-  window->draw(this->vertex, 4,sf::PrimitiveType::TrianglesFan, this->renderState);
+  if (doRender)
+    window->draw(this->vertex, 4,sf::PrimitiveType::TrianglesFan, this->renderState);
 }
 
 void Entity::toRender (bool doRender) {
