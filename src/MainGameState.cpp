@@ -45,6 +45,9 @@ void MainGameState::init() {
   mapBall.getEntity().setTexturePos(0,0);
   mapBall.setCamera(&camera);
 
+  _player.setCamera(&camera);
+  _player.setPosition(sf::Vector2<uint64_t>(16*1000,16*1000));
+
   this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
   anim->addFrame(16,0);
@@ -74,47 +77,48 @@ void MainGameState::init() {
   anim->addFrame(32,48);
   anim->setTexture(this->textureManager.get("Player"));
   this->animationManager.add("Up", anim);
-  player = new AnimatedEntity();
+  player = &_player.getEntity();
   player->setPosition(64,64);
   player->setSize(16,16);
   player->setTimePerFrame(6);
   player->setAnimation(this->animationManager.get("Down"));
   player->setLoop(true);
   player->stop();
+
+  camera.lockEntity(&_player);
 }
 
 #include "Logger.hpp"
 void MainGameState::update() {
-
   if (Game::Instance()->getFocus()) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
       Game::Instance()->getWindow()->close();
     player->stop();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      camera.move(1,0);
+      _player.move(1,0);
       player->setAnimation(this->animationManager.get("Right"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      camera.move(-1,0);
+      _player.move(-1,0);
       player->setAnimation(this->animationManager.get("Left"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-      camera.move(0,-1);
+      _player.move(0,-1);
       player->setAnimation(this->animationManager.get("Up"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-      camera.move(0,1);
+      _player.move(0,1);
       player->setAnimation(this->animationManager.get("Down"));
       player->play();
     }
   }
 
-  this->player->update();
-  this->pallet->update();
   this->camera.update();
+  this->_player.update();
+  this->pallet->update();
   mapBall.update();
   this->tiledScreen.setPos(-(camera.getX() % TILE_SIZE), -(camera.getY() % TILE_SIZE));
   this->tiledScreen.update(camera.getX(), camera.getY());

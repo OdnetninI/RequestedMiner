@@ -23,6 +23,7 @@ class MainGameState : public GameState {
     TiledScreen tiledScreen;
     uint64_t x, y;
     AnimatedEntity* player;
+    MapEntity _player;
 
     Map* pallet;
     Map* route1;

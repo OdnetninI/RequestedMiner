@@ -32,8 +32,17 @@ void MapEntity::update () {
   this->entity.update();
 }
 
-Entity& MapEntity::getEntity() {
+AnimatedEntity& MapEntity::getEntity() {
   return entity;
+}
+
+void MapEntity::setPosition(sf::Vector2<uint64_t> pos) {
+  position = pos;
+}
+
+void MapEntity::move(uint64_t x, uint64_t y) {
+  position.x += x;
+  position.y += y;
 }
 
 

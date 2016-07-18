@@ -9,7 +9,7 @@ class Camera;
 
 class MapEntity {
   private:
-    Entity entity;
+    AnimatedEntity entity;
     Camera* camera;
     sf::Vector2<uint64_t> position;
 
@@ -17,10 +17,12 @@ class MapEntity {
     MapEntity();
     ~MapEntity();
     void setCamera(Camera* camera);
+    void setPosition(sf::Vector2<uint64_t> pos);
+    void move(uint64_t x, uint64_t y);
     void update();
     sf::Vector2<uint64_t> getPosition();
 
     // Debug Like
-    Entity& getEntity();
+    AnimatedEntity& getEntity();
 };
 #endif // __MAPENTITY_HPP__
