@@ -1,3 +1,4 @@
+
 #ifndef __MAPENTITY_HPP__
 #define __MAPENTITY_HPP__
 
