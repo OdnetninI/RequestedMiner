@@ -13,6 +13,7 @@
 #include "Map.hpp"
 
 #include "MapEntity.hpp"
+#include "MapCharacter.hpp"
 
 class MainGameState : public GameState {
   private:
@@ -23,7 +24,7 @@ class MainGameState : public GameState {
     TiledScreen tiledScreen;
     uint64_t x, y;
     AnimatedEntity* player;
-    MapEntity _player;
+    MapCharacter _player;
 
     Map* pallet;
     Map* route1;

@@ -7,8 +7,6 @@ sf::Vector2<uint64_t> MapEntity::getPosition() {
 }
 
 MapEntity::MapEntity() {
-  position.x = 1000*16;
-  position.y = 1000*16;
   camera = nullptr;
 }
 
@@ -38,6 +36,11 @@ AnimatedEntity& MapEntity::getEntity() {
 
 void MapEntity::setPosition(sf::Vector2<uint64_t> pos) {
   position = pos;
+}
+
+void MapEntity::setPosition(uint64_t x, uint64_t y) {
+  position.x = x;
+  position.y = y;
 }
 
 void MapEntity::move(uint64_t x, uint64_t y) {

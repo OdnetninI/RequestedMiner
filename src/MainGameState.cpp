@@ -1,6 +1,7 @@
 #include "MainGameState.hpp"
 #include "Game.hpp"
 #include "AnimatedEntity.hpp"
+#include "DirLook.hpp"
 
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   this->camera.setPosition(1000*16,1000*16);
@@ -44,9 +45,10 @@ void MainGameState::init() {
   mapBall.getEntity().setSize(24,24);
   mapBall.getEntity().setTexturePos(0,0);
   mapBall.setCamera(&camera);
+  mapBall.setPosition(16000,16000);
 
   _player.setCamera(&camera);
-  _player.setPosition(sf::Vector2<uint64_t>(16*1000,16*1000));
+  _player.setPosition(16000,16000);
 
   this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
@@ -95,22 +97,22 @@ void MainGameState::update() {
       Game::Instance()->getWindow()->close();
     player->stop();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      _player.move(1,0);
+      _player.moveTo(DIR_RIGHT);
       player->setAnimation(this->animationManager.get("Right"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      _player.move(-1,0);
+      _player.moveTo(DIR_LEFT);
       player->setAnimation(this->animationManager.get("Left"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-      _player.move(0,-1);
+      _player.moveTo(DIR_UP);
       player->setAnimation(this->animationManager.get("Up"));
       player->play();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-      _player.move(0,1);
+      _player.moveTo(DIR_DOWN);
       player->setAnimation(this->animationManager.get("Down"));
       player->play();
     }

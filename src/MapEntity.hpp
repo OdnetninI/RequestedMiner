@@ -8,7 +8,7 @@
 class Camera;
 
 class MapEntity {
-  private:
+  protected:
     AnimatedEntity entity;
     Camera* camera;
     sf::Vector2<uint64_t> position;
@@ -18,8 +18,9 @@ class MapEntity {
     ~MapEntity();
     void setCamera(Camera* camera);
     void setPosition(sf::Vector2<uint64_t> pos);
+    void setPosition(uint64_t x, uint64_t y);
     void move(uint64_t x, uint64_t y);
-    void update();
+    virtual void update();
     sf::Vector2<uint64_t> getPosition();
 
     // Debug Like
