@@ -15,5 +15,7 @@ class MapCharacter : public MapEntity {
     void update();
     void lookAt(uint8_t dir);
     void moveTo(uint8_t dir);
+    uint8_t getLook();
+    uint8_t getDir();
 };
 #endif // __MAPCHARACTER_HPP__

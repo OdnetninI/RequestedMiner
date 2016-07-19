@@ -14,6 +14,7 @@
 
 #include "MapEntity.hpp"
 #include "MapCharacter.hpp"
+#include "Controller.hpp"
 
 class MainGameState : public GameState {
   private:
@@ -29,6 +30,8 @@ class MainGameState : public GameState {
     Map* pallet;
     Map* route1;
     Map* verde;
+
+    Controller controller;
 
     Camera camera;
     MapEntity mapBall;

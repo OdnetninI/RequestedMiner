@@ -50,6 +50,8 @@ void MainGameState::init() {
   _player.setCamera(&camera);
   _player.setPosition(16000,16000);
 
+  controller.setCharacter(&_player);
+
   this->tiledScreen.setTileset(this->textureManager.get("Tileset"));
   Animation* anim = new Animation();
   anim->addFrame(16,0);
@@ -95,27 +97,7 @@ void MainGameState::update() {
   if (Game::Instance()->getFocus()) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
       Game::Instance()->getWindow()->close();
-    player->stop();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-      _player.moveTo(DIR_RIGHT);
-      player->setAnimation(this->animationManager.get("Right"));
-      player->play();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-      _player.moveTo(DIR_LEFT);
-      player->setAnimation(this->animationManager.get("Left"));
-      player->play();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-      _player.moveTo(DIR_UP);
-      player->setAnimation(this->animationManager.get("Up"));
-      player->play();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-      _player.moveTo(DIR_DOWN);
-      player->setAnimation(this->animationManager.get("Down"));
-      player->play();
-    }
+    controller.update();    
   }
 
   this->camera.update();

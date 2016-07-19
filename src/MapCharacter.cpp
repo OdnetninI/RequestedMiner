@@ -34,3 +34,11 @@ bool MapCharacter::isAligned() {
   y = y * TILE_SIZE;
   return ((position.x == x) && (position.y == y));
 }
+
+uint8_t MapCharacter::getLook() {
+  return look;
+}
+
+uint8_t MapCharacter::getDir() {
+  return dir;
+}
