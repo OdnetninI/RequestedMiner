@@ -8,6 +8,8 @@ sf::Vector2<uint64_t> MapEntity::getPosition() {
 
 MapEntity::MapEntity() {
   camera = nullptr;
+  fixed.x = 0;
+  fixed.y = 0;
 }
 
 MapEntity::~MapEntity() {
@@ -20,8 +22,8 @@ void MapEntity::setCamera(Camera* camera) {
 
 void MapEntity::update () {
   if (camera) {
-    int32_t screenPosX = this->position.x - camera->getPosition().x;
-    int32_t screenPosY = this->position.y - camera->getPosition().y;
+    int32_t screenPosX = this->position.x - camera->getPosition().x - fixed.x;
+    int32_t screenPosY = this->position.y - camera->getPosition().y - fixed.y;
     this->entity.setPosition(screenPosX, screenPosY);
     if (screenPosX < -this->entity.getW() || screenPosY < -this->entity.getH() || screenPosX > SCREEN_X || screenPosY > SCREEN_Y)
       this->entity.toRender(false);

@@ -10,6 +10,7 @@ typedef struct {
 #include <vector>
 #include <SFML/Graphics.hpp>
 
+// TODO: add time per frame for diferent animations speed
 class Animation {
   private:
     std::vector<_frame> frames;

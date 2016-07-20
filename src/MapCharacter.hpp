@@ -2,6 +2,7 @@
 #define __MAPCHARACTER_HPP__
 
 #include "MapEntity.hpp"
+#include "Animation.hpp"
 
 class MapCharacter : public MapEntity {
   private:
@@ -10,6 +11,9 @@ class MapCharacter : public MapEntity {
 
     bool isAligned();
 
+    Animation* walking[4];
+    Animation* stand[4];
+
   public:
     MapCharacter();
     void update();
@@ -17,5 +21,7 @@ class MapCharacter : public MapEntity {
     void moveTo(uint8_t dir);
     uint8_t getLook();
     uint8_t getDir();
+    void setWalkingAnimation (uint8_t dir, Animation* anim);
+    void setStandAnimation (uint8_t dir, Animation* anim);
 };
 #endif // __MAPCHARACTER_HPP__

@@ -84,10 +84,13 @@ void MainGameState::init() {
   player = &_player.getEntity();
   player->setPosition(64,64);
   player->setSize(16,16);
-  player->setTimePerFrame(6);
-  player->setAnimation(this->animationManager.get("Down"));
+  player->setTimePerFrame(4);
   player->setLoop(true);
-  player->stop();
+
+  _player.setWalkingAnimation(DIR_DOWN, this->animationManager.get("Down"));
+  _player.setWalkingAnimation(DIR_UP, this->animationManager.get("Up"));
+  _player.setWalkingAnimation(DIR_LEFT, this->animationManager.get("Left"));
+  _player.setWalkingAnimation(DIR_RIGHT, this->animationManager.get("Right"));
 
   camera.lockEntity(&_player);
 }
@@ -97,7 +100,7 @@ void MainGameState::update() {
   if (Game::Instance()->getFocus()) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
       Game::Instance()->getWindow()->close();
-    controller.update();    
+    controller.update();
   }
 
   this->camera.update();

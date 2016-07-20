@@ -12,6 +12,7 @@ class MapEntity {
     AnimatedEntity entity;
     Camera* camera;
     sf::Vector2<uint64_t> position;
+    sf::Vector2<uint16_t> fixed; 
 
   public:
     MapEntity();
