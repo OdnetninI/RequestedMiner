@@ -2,10 +2,12 @@
 #ifndef __MAP_HPP__
 #define __MAP_HPP__
 
+// TODO: Rewrite
 #include <cstdint>
 #include <list>
 #include <SFML/Graphics.hpp>
 #include "TiledScreen.hpp"
+#include "MapEventManager.hpp"
 
 class Map {
 	private:
@@ -15,11 +17,14 @@ class Map {
 
 		uint64_t w,h;
 		void loadFromFile (const char* filename, sf::Vector2u** data);
+		MapEventManager mapEventManager;
 
 	public:
 		uint64_t minX, minY, maxX, maxY;
 		std::list<Map*> adyacentes;
 
+		MapEventManager* getEventManager(); // ONLY FOR TESTING
+		void checkEvent (uint64_t x, uint64_t y, uint8_t type);
 		Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY);
 		~Map();
 		sf::Vector2u getTile (bool up, uint16_t l, uint64_t x, uint16_t y);

@@ -12,7 +12,7 @@ class MapEntity {
     AnimatedEntity entity;
     Camera* camera;
     sf::Vector2<uint64_t> position;
-    sf::Vector2<uint16_t> fixed; 
+    sf::Vector2<uint16_t> fixed;
 
   public:
     MapEntity();
@@ -23,6 +23,10 @@ class MapEntity {
     void move(uint64_t x, uint64_t y);
     virtual void update();
     sf::Vector2<uint64_t> getPosition();
+
+    // Return Real Position
+    uint64_t getX();
+    uint64_t getY();
 
     // Debug Like
     AnimatedEntity& getEntity();

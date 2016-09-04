@@ -2,6 +2,7 @@
 #include "Game.hpp"
 #include "AnimatedEntity.hpp"
 #include "DirLook.hpp"
+#include "MapEvent.hpp"
 
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   this->camera.setPosition(1000*16,1000*16);
@@ -28,6 +29,10 @@ MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   tileRetriever.posFinder.insertar(pallet);
   tileRetriever.posFinder.insertar(route1);
   tileRetriever.posFinder.insertar(verde);
+
+  MapEvent* evento = new MapEvent();
+  evento->setPos(1,1);
+  pallet->getEventManager()->add(evento);
 }
 
 MainGameState::~MainGameState() {
@@ -109,6 +114,15 @@ void MainGameState::update() {
   mapBall.update();
   this->tiledScreen.setPos(-(camera.getX() % TILE_SIZE), -(camera.getY() % TILE_SIZE));
   this->tiledScreen.update(camera.getX(), camera.getY());
+
+  // Must be do only when player moves or when map or event changes
+  // 1000 = Start map position of actual map
+  uint64_t px = (_player.getX())/TILE_SIZE-999;
+  uint64_t py = (_player.getY())/TILE_SIZE-999;
+  Logger::Instance() << "PX = " << px << " PY = " << py << "\n";
+  // Events only happends on actual map, need to find how can i determine that
+  pallet->checkEvent(px, py, 0);
+  pallet->checkEvent(px, py, 1);
 }
 
 void MainGameState::render() {

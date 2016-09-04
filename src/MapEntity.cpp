@@ -50,6 +50,13 @@ void MapEntity::move(uint64_t x, uint64_t y) {
   position.y += y;
 }
 
+uint64_t MapEntity::getX() {
+  return position.x;
+}
+
+uint64_t MapEntity::getY() {
+  return position.y;
+}
 
 /*
 1000,1000

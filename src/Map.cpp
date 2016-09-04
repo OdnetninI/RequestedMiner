@@ -20,6 +20,10 @@ Map::Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY) {
   }
 }
 
+MapEventManager* Map::getEventManager() {
+  return &this->mapEventManager;
+}
+
 Map::~Map() {
   for (uint16_t l = 0; l < UP_LAYERS; l++) {
     for (uint64_t i = 0; i < this->h; i++)
@@ -98,6 +102,18 @@ void Map::loadFromFile (const char* filename, sf::Vector2u** data) {
   }
 
   file.close();
+}
+
+// Type = How i interacted
+// 0 = Talked
+// 1 = Walked
+// You can talk to event to get info u other things, but it can have
+// a different interaction when walked on it.
+void Map::checkEvent (uint64_t x, uint64_t y, uint8_t type) {
+  MapEvent* evento = this->mapEventManager.find(x,y);
+  if (!evento) return;
+  if (!type) evento->whenTalked();
+  else evento->whenWalked();
 }
 
 void Map::load (bool up, uint16_t layer, const char* filename) {
