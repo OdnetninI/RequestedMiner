@@ -109,11 +109,12 @@ void Map::loadFromFile (const char* filename, sf::Vector2u** data) {
 // 1 = Walked
 // You can talk to event to get info u other things, but it can have
 // a different interaction when walked on it.
-void Map::checkEvent (uint64_t x, uint64_t y, uint8_t type) {
+bool Map::checkEvent (uint64_t x, uint64_t y, uint8_t type) {
   MapEvent* evento = this->mapEventManager.find(x,y);
-  if (!evento) return;
+  if (!evento) return false;
   if (!type) evento->whenTalked();
   else evento->whenWalked();
+  return true;
 }
 
 void Map::load (bool up, uint16_t layer, const char* filename) {

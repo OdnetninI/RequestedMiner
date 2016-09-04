@@ -1,7 +1,9 @@
 #include "Controller.hpp"
+#include "Map.hpp"
 
 Controller::Controller() {
   chara = nullptr;
+  actualmap = nullptr;
   movementLocked = false;
 }
 
@@ -46,4 +48,18 @@ void Controller::update() {
 
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && chara->getLook() != DIR_DOWN)
     chara->lookAt(DIR_DOWN);
+
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) {
+    if (actualmap) {
+      int8_t ix = 0;
+      int8_t iy = 0;
+      if (chara->getLook() == DIR_RIGHT) ix=1;
+      else if (chara->getLook() == DIR_LEFT) ix=-1;
+      else if (chara->getLook() == DIR_DOWN) iy=1;
+      else if (chara->getLook() == DIR_UP) iy=-1;
+      uint64_t px = (chara->getX()+TILE_SIZE)/TILE_SIZE - actualmap->minY + ix;
+      uint64_t py = (chara->getY()+TILE_SIZE)/TILE_SIZE - actualmap->minX + iy;
+      if (actualmap->checkEvent(px, py, 0)) return;
+    }
+  }
 }

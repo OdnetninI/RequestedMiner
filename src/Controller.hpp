@@ -3,9 +3,12 @@
 
 #include "MapCharacter.hpp"
 
+class Map;
+
 class Controller {
   private:
     MapCharacter* chara;
+    Map* actualmap;
     bool movementLocked;
 
   public:
@@ -14,5 +17,6 @@ class Controller {
     void unlockMovement();
     void setCharacter(MapCharacter* character);
     void update();
+    void setActualMap(Map* map) {actualmap = map;}
 };
 #endif // __CONTROLLER_HPP__

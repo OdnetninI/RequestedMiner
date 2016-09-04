@@ -8,6 +8,7 @@ MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   this->camera.setPosition(1000*16,1000*16);
 
   verde = new Map(990,1040,1019,1049);
+  verde->setName("Verde");
   verde->load(false, 0, "Data/Pallet_Town_Down_0.csv");
 
   route1 = new Map(991,1030,900,999);
@@ -15,12 +16,14 @@ MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   route1->load(false, 1, "Data/Route_1_Down_1.csv");
   route1->load(true, 0, "Data/Route_1_Up_0.csv");
   route1->load(true, 1, "Data/Route_1_Up_1.csv");
+  route1->setName("Route1");
 
   pallet = new Map(1000,1020,1000,1018);
   pallet->load(false, 0, "Data/Pallet_Town_Down_0.csv");
   pallet->load(false, 1, "Data/Pallet_Town_Down_1.csv");
   pallet->load(true, 0, "Data/Pallet_Town_Up_0.csv");
   pallet->load(true, 1, "Data/Pallet_Town_Up_1.csv");
+  pallet->setName("Pallet");
 
   pallet->addAyacente(route1);
   route1->addAyacente(pallet);
@@ -110,19 +113,29 @@ void MainGameState::update() {
 
   this->camera.update();
   this->_player.update();
-  this->pallet->update();
+  // Positioning ERROR
+  // Only update actual map
+  // What i must update? Actualmap, oldMap, all visible map?
+  Map* actualmap = this->tileRetriever.getMap((this->_player.getX()+TILE_SIZE)/TILE_SIZE, (this->_player.getY()+TILE_SIZE)/TILE_SIZE);
+  controller.setActualMap(actualmap);
+  if (actualmap) {
+    actualmap->update();
+    std::cout << actualmap->getName() << "\n";
+  }
   mapBall.update();
   this->tiledScreen.setPos(-(camera.getX() % TILE_SIZE), -(camera.getY() % TILE_SIZE));
   this->tiledScreen.update(camera.getX(), camera.getY());
 
   // Must be do only when player moves or when map or event changes
-  // 1000 = Start map position of actual map
-  uint64_t px = (_player.getX())/TILE_SIZE-999;
-  uint64_t py = (_player.getY())/TILE_SIZE-999;
-  Logger::Instance() << "PX = " << px << " PY = " << py << "\n";
-  // Events only happends on actual map, need to find how can i determine that
-  pallet->checkEvent(px, py, 0);
-  pallet->checkEvent(px, py, 1);
+  // TODO: PLAYER POSITION ERROR, TEMPORALY CORRECTED WITH +TILE_SIZE
+  if (actualmap) {
+    uint64_t py = (_player.getY()+TILE_SIZE)/TILE_SIZE - actualmap->minX;
+    uint64_t px = (_player.getX()+TILE_SIZE)/TILE_SIZE - actualmap->minY;
+    //Logger::Instance() << "PX = " << px << " PY = " << py << "\n";
+    // Events only happends on actual map, need to find how can i determine that
+    actualmap->checkEvent(px, py, 1);
+    //actualmap->checkEvent(px, py, 0);
+  }
 }
 
 void MainGameState::render() {

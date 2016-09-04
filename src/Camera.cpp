@@ -25,7 +25,7 @@ void Camera::unlockEntity() {
 #include "Game.hpp"
 void Camera::update() {
   if (this->lockedEntity != nullptr)
-    this->position = this->lockedEntity->getPosition() - sf::Vector2<uint64_t>(SCREEN_X/2 - TILE_SIZE, SCREEN_Y/2 - TILE_SIZE);
+    this->position = this->lockedEntity->getPosition() - sf::Vector2<uint64_t>(SCREEN_X/2, SCREEN_Y/2);
 }
 
 sf::Vector2<uint64_t> Camera::getPosition() {

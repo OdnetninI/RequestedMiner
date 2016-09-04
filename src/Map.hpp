@@ -5,6 +5,7 @@
 // TODO: Rewrite
 #include <cstdint>
 #include <list>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "TiledScreen.hpp"
 #include "MapEventManager.hpp"
@@ -19,12 +20,14 @@ class Map {
 		void loadFromFile (const char* filename, sf::Vector2u** data);
 		MapEventManager mapEventManager;
 
+		std::string name = "";
+
 	public:
 		uint64_t minX, minY, maxX, maxY;
 		std::list<Map*> adyacentes;
 
 		MapEventManager* getEventManager(); // ONLY FOR TESTING
-		void checkEvent (uint64_t x, uint64_t y, uint8_t type);
+		bool checkEvent (uint64_t x, uint64_t y, uint8_t type);
 		Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY);
 		~Map();
 		sf::Vector2u getTile (bool up, uint16_t l, uint64_t x, uint16_t y);
@@ -33,6 +36,9 @@ class Map {
 		void addAyacente (Map* m);
 		void load (bool up, uint16_t layer, const char* filename);
 		void update ();
+
+		void setName(const char* name) {this->name = name;}
+		std::string getName() {return this->name;}
 };
 
 #endif // __MAP_HPP__
