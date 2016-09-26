@@ -56,7 +56,7 @@ void MainGameState::init() {
   mapBall.setPosition(16000,16000);
 
   _player.setCamera(&camera);
-  _player.setPosition(16000,16000);
+  _player.setPosition(16*1003,16*1003);
 
   controller.setCharacter(&_player);
 
@@ -120,7 +120,7 @@ void MainGameState::update() {
   controller.setActualMap(actualmap);
   if (actualmap) {
     actualmap->update();
-    std::cout << actualmap->getName() << "\n";
+    //std::cout << actualmap->getName() << "\n";
   }
   mapBall.update();
   this->tiledScreen.setPos(-(camera.getX() % TILE_SIZE), -(camera.getY() % TILE_SIZE));

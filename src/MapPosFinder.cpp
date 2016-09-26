@@ -5,14 +5,14 @@ MapPosFinder::MapPosFinder() {
   this->last = nullptr;
 }
 
-MapPosFinder::minYNode MapPosFinder::createB (Map* objeto) {
+inline MapPosFinder::minYNode MapPosFinder::createB (Map* objeto) {
   minYNode nodo;
   nodo.objeto = objeto;
   nodo.minY = objeto->minY;
   return nodo;
 }
 
-bool MapPosFinder::isInside ( Map* m, uint64_t x, uint64_t y) {
+inline bool MapPosFinder::isInside ( Map* m, uint64_t x, uint64_t y) {
   if (x < m->minX || x > m->maxX || y < m->minY || y > m->maxY) return false;
   return true;
 }

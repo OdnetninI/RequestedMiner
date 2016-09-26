@@ -7,6 +7,7 @@
 #define SCALE_FACTOR 3
 #define MAX_FRAMESKIP 10
 #define FPS_UPS_SHOWN 0
+#define RTICKS_SHOWN 1
 #define UPS 60
 #define UPS_TICK_TIME 1000/UPS
 
@@ -50,6 +51,7 @@ Game::~Game() {
 }
 
 int Game::gameLoop() {
+  uint64_t rticks = 0;
   while (this->window.isOpen() && running) {
 
     this->currentState = this->stateManager->getState();
@@ -71,15 +73,21 @@ int Game::gameLoop() {
     }
     else this->frameSkip++;
 
+    rticks++;
+
     if (this->ticks - this->oldTick >= UPS-1) {
       #if FPS_UPS_SHOWN == 1
         Logger::Instance() << "FPS: " << this->frameTicks << "\n";
         Logger::Instance() << "UPS: " << this->actualTick <<  "\n";
       #endif
+      #if RTICKS_SHOWN == 1
+        Logger::Instance() << "RealTicks: " << rticks << "\n";
+      #endif
       this->frameTicks = 0;
       this->ticks = 0;
       this->actualTick = 0;
       this->oldTick = this->ticks;
+      rticks = 0;
     }
 
   }

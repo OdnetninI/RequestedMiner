@@ -9,7 +9,7 @@ int main() {
   return returnValue;
 }
 
-void singletonCloser() {
+inline void singletonCloser() {
   Logger::destroy();
   Game::destroy();
 }
