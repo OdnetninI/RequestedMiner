@@ -7,8 +7,8 @@
 #include <list>
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "TiledScreen.hpp"
-#include "MapEventManager.hpp"
+#include "../System/TiledScreen.hpp"
+#include "../Map/MapEventManager.hpp"
 
 class Map {
 	private:

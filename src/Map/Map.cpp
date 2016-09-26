@@ -1,4 +1,6 @@
 #include "Map.hpp"
+#include <fstream>
+#include "../System/Logger.hpp"
 
 Map::Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY) {
   this->minX = minX;
@@ -77,9 +79,6 @@ void Map::update() {
 void Map::addAyacente (Map* m) {
   this->adyacentes.push_back(m);
 }
-
-#include <fstream>
-#include "Logger.hpp"
 
 void Map::loadFromFile (const char* filename, sf::Vector2u** data) {
   std::ifstream file (filename);

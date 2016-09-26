@@ -1,4 +1,5 @@
 #include "Camera.hpp"
+#include "../Game.hpp"
 
 void Camera::setPosition(sf::Vector2<uint64_t> pos) {
   this->position = pos;
@@ -22,7 +23,6 @@ void Camera::unlockEntity() {
   this->lockedEntity = nullptr;
 }
 
-#include "Game.hpp"
 void Camera::update() {
   if (this->lockedEntity != nullptr)
     this->position = this->lockedEntity->getPosition() - sf::Vector2<uint64_t>(SCREEN_X/2, SCREEN_Y/2);

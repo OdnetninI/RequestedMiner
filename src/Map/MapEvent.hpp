@@ -4,7 +4,7 @@
 // ¿Map Event Controller must be on other thread?
 
 #include "MapVectorPosition.hpp"
-#include "Logger.hpp"
+#include "../System/Logger.hpp"
 
 class MapEvent {
   private:

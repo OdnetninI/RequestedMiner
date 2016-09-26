@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "Logger.hpp"
+#include "System/Logger.hpp"
 
 void singletonCloser();
 

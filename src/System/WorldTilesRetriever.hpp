@@ -2,7 +2,7 @@
 #define __WORLDTILESRETRIEVER_HPP__
 
 #include <SFML/Graphics.hpp>
-#include "MapPosFinder.hpp"
+#include "../Map/MapPosFinder.hpp"
 
 class WorldTilesRetriever {
   private:

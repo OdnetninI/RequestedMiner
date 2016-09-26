@@ -3,7 +3,7 @@
 #define __MAPENTITY_HPP__
 
 #include <SFML/Graphics.hpp>
-#include "AnimatedEntity.hpp"
+#include "../Entity/AnimatedEntity.hpp"
 
 class Camera;
 

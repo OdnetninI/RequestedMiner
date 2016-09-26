@@ -1,7 +1,7 @@
 #ifndef __CONTROLLER_HPP__
 #define __CONTROLLER_HPP__
 
-#include "MapCharacter.hpp"
+#include "../Map/MapCharacter.hpp"
 
 class Map;
 

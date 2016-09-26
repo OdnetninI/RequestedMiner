@@ -1,5 +1,6 @@
 #include "Controller.hpp"
-#include "Map.hpp"
+#include "../Map/Map.hpp"
+#include "../Map/DirLook.hpp"
 
 Controller::Controller() {
   chara = nullptr;
@@ -19,7 +20,6 @@ void Controller::setCharacter(MapCharacter* character) {
   chara = character;
 }
 
-#include "DirLook.hpp"
 void Controller::update() {
   if (movementLocked) return;
   if (!chara) return;

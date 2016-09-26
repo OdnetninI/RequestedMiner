@@ -1,6 +1,6 @@
 #include "MapEntity.hpp"
 #include "Camera.hpp"
-#include "Game.hpp"
+#include "../Game.hpp"
 
 sf::Vector2<uint64_t> MapEntity::getPosition() {
   return this->position;

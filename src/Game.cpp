@@ -1,7 +1,7 @@
 #include "Game.hpp"
-#include "MainGameState.hpp"
+#include "States/MainGameState.hpp"
 #include <iostream>
-#include "Logger.hpp"
+#include "System/Logger.hpp"
 
 #define NO_ERRORS 0
 #define SCALE_FACTOR 3

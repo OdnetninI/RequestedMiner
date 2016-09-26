@@ -2,7 +2,7 @@
 #define __MAPCHARACTER_HPP__
 
 #include "MapEntity.hpp"
-#include "Animation.hpp"
+#include "../Entity/Animation.hpp"
 
 class MapCharacter : public MapEntity {
   private:

@@ -3,8 +3,8 @@
 
 #include <cstdint>
 #include <SFML/Graphics.hpp>
-#include "GameState.hpp"
-#include "GameStateManager.hpp"
+#include "States/GameState.hpp"
+#include "States/GameStateManager.hpp"
 
 #define TILES_X 15
 #define TILES_Y 12

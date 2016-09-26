@@ -1,8 +1,9 @@
 #include "MainGameState.hpp"
-#include "Game.hpp"
-#include "AnimatedEntity.hpp"
-#include "DirLook.hpp"
-#include "MapEvent.hpp"
+#include "../Game.hpp"
+#include "../Entity/AnimatedEntity.hpp"
+#include "../Map/DirLook.hpp"
+#include "../Map/MapEvent.hpp"
+#include "../System/Logger.hpp"
 
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   this->camera.setPosition(1000*16,1000*16);
@@ -43,7 +44,7 @@ MainGameState::~MainGameState() {
   delete route1;
   delete verde;
 }
-#include "Logger.hpp"
+
 void MainGameState::init() {
   this->textureManager.create("Player", "Data/test.png");
   this->textureManager.create("Tileset", "Data/tileset.png");
@@ -103,7 +104,6 @@ void MainGameState::init() {
   camera.lockEntity(&_player);
 }
 
-#include "Logger.hpp"
 void MainGameState::update() {
   if (Game::Instance()->getFocus()) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))

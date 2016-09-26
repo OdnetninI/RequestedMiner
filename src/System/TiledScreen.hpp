@@ -2,7 +2,7 @@
 #define __TILEDSCREEN_HPP__
 
 #include <SFML/Graphics.hpp>
-#include "Game.hpp"
+#include "../Game.hpp"
 #include "WorldTilesRetriever.hpp"
 
 #define MAP_WIDTH (TILES_X+2)
