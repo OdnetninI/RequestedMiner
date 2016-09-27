@@ -1,6 +1,6 @@
-#include "Map.hpp"
+#include "Map/Map.hpp"
 #include <fstream>
-#include "../System/Logger.hpp"
+#include "System/Logger.hpp"
 
 Map::Map(uint64_t minX, uint64_t maxX, uint64_t minY, uint64_t maxY) {
   this->minX = minX;

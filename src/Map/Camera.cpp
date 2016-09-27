@@ -1,5 +1,5 @@
-#include "Camera.hpp"
-#include "../Game.hpp"
+#include "Map/Camera.hpp"
+#include "Game.hpp"
 
 void Camera::setPosition(sf::Vector2<uint64_t> pos) {
   this->position = pos;

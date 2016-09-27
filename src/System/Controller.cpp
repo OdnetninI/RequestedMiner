@@ -1,6 +1,6 @@
-#include "Controller.hpp"
-#include "../Map/Map.hpp"
-#include "../Map/DirLook.hpp"
+#include "System/Controller.hpp"
+#include "Map/Map.hpp"
+#include "Map/MapEntity/DirLook.hpp"
 
 Controller::Controller() {
   chara = nullptr;

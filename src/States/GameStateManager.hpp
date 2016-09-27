@@ -2,7 +2,7 @@
 #define __GAMESTATEMANAGER_HPP__
 
 #include <stack>
-#include "GameState.hpp"
+#include "States/GameState.hpp"
 
 class GameStateManager {
   private:

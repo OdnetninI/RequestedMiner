@@ -1,4 +1,4 @@
-#include "GameStateManager.hpp"
+#include "States/GameStateManager.hpp"
 
 GameStateManager* GameStateManager::instance = nullptr;
 

@@ -1,4 +1,4 @@
-#include "TiledScreen.hpp"
+#include "System/TiledScreen.hpp"
 
 TiledScreen::TiledScreen(WorldTilesRetriever* tileRetriever) {
   this->tileRetriever = tileRetriever;

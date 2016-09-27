@@ -1,4 +1,4 @@
-#include "Logger.hpp"
+#include "System/Logger.hpp"
 
 Logger* Logger::instance = nullptr;
 

@@ -1,6 +1,6 @@
-#include "MapCharacter.hpp"
-#include "DirLook.hpp"
-#include "../Game.hpp"
+#include "Map/MapEntity/MapCharacter.hpp"
+#include "Map/MapEntity/DirLook.hpp"
+#include "Game.hpp"
 
 // NOTE: Speed must be divisor of TILE_SIZE
 #define CHAR_SPEED 1

@@ -1,9 +1,9 @@
-#include "MainGameState.hpp"
-#include "../Game.hpp"
-#include "../Entity/AnimatedEntity.hpp"
-#include "../Map/DirLook.hpp"
-#include "../Map/MapEvent.hpp"
-#include "../System/Logger.hpp"
+#include "States/MainGameState.hpp"
+#include "Game.hpp"
+#include "Entity/AnimatedEntity.hpp"
+#include "Map/MapEntity/DirLook.hpp"
+#include "Map/MapEvent/MapEvent.hpp"
+#include "System/Logger.hpp"
 
 MainGameState::MainGameState():tiledScreen(&tileRetriever) {
   this->camera.setPosition(1000*16,1000*16);

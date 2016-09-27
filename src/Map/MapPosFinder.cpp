@@ -1,5 +1,5 @@
-#include "MapPosFinder.hpp"
-#include "Map.hpp"
+#include "Map/MapPosFinder.hpp"
+#include "Map/Map.hpp"
 
 MapPosFinder::MapPosFinder() {
   this->last = nullptr;

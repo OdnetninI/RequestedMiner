@@ -1,5 +1,5 @@
-#include "WorldTilesRetriever.hpp"
-#include "../Map/Map.hpp"
+#include "System/WorldTilesRetriever.hpp"
+#include "Map/Map.hpp"
 #include <iostream>
 sf::Vector2u WorldTilesRetriever::getTile (bool up, uint16_t l, uint64_t x, uint64_t y) {
   Map* m = this->posFinder.buscar(x,y);

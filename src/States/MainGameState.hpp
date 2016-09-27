@@ -2,18 +2,18 @@
 #define __MAINGAMESTATE_HPP__
 
 #include "GameState.hpp"
-#include "../System/TextureManager.hpp"
-#include "../Entity/AnimationManager.hpp"
-#include "../System/TiledScreen.hpp"
-#include "../Map/Camera.hpp"
+#include "System/TextureManager.hpp"
+#include "Entity/AnimationManager.hpp"
+#include "System/TiledScreen.hpp"
+#include "Map/Camera.hpp"
 
-#include "../Entity/AnimatedEntity.hpp"
-#include "../System/WorldTilesRetriever.hpp"
-#include "../Map/Map.hpp"
+#include "Entity/AnimatedEntity.hpp"
+#include "System/WorldTilesRetriever.hpp"
+#include "Map/Map.hpp"
 
-#include "../Map/MapEntity.hpp"
-#include "../Map/MapCharacter.hpp"
-#include "../System/Controller.hpp"
+#include "Map/MapEntity/MapEntity.hpp"
+#include "Map/MapEntity/MapCharacter.hpp"
+#include "System/Controller.hpp"
 
 class MainGameState : public GameState {
   private:

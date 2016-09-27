@@ -2,7 +2,7 @@
 #define __CAMERA_HPP__
 
 #include <SFML/Graphics.hpp>
-#include "MapEntity.hpp"
+#include "Map/MapEntity/MapEntity.hpp"
 
 class Camera {
   private:

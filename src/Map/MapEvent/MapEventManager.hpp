@@ -2,8 +2,8 @@
 #define __MAPEVENTMANAGER_HPP__
 
 #include <map> // Try to use unordered_map
-#include "MapVectorPosition.hpp"
-#include "MapEvent.hpp"
+#include "Map/MapVectorPosition.hpp"
+#include "Map/MapEvent/MapEvent.hpp"
 
 class MapEventManager {
   private:

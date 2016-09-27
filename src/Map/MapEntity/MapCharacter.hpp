@@ -1,8 +1,8 @@
 #ifndef __MAPCHARACTER_HPP__
 #define __MAPCHARACTER_HPP__
 
-#include "MapEntity.hpp"
-#include "../Entity/Animation.hpp"
+#include "Map/MapEntity/MapEntity.hpp"
+#include "Entity/Animation.hpp"
 
 class MapCharacter : public MapEntity {
   private:

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(RequestedMiner)
 
-set(CMAKE_C_FLAGS "-std=c++14 -Werror -Wall -O3")
+set(CMAKE_CXX_FLAGS "-std=c++14 -Werror -Wall -O3 -I${CMAKE_SOURCE_DIR}/src")
 
 # This is a built-in utility to grab all the source files from a specific
 # location into a list
