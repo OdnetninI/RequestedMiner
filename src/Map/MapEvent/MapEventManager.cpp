@@ -43,8 +43,3 @@ MapEvent* MapEventManager::find(MapVectorPos pos) {
 MapEvent* MapEventManager::find(uint64_t x, uint64_t y) {
   return this->find({x,y});
 }
-
-int operator<(const MapVectorPos& obj, const MapVectorPos& obj2) {
- if (obj.x < obj2.x || obj.y < obj2.y) return -1;
- return 0;
-}
