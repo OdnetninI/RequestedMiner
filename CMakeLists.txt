@@ -5,7 +5,8 @@ set(CMAKE_C_FLAGS "-std=c++14 -Werror -Wall -O3")
 
 # This is a built-in utility to grab all the source files from a specific
 # location into a list
-AUX_SOURCE_DIRECTORY(./src LOG_SOURCES)
+#AUX_SOURCE_DIRECTORY(./src LOG_SOURCES)
+FILE(GLOB_RECURSE LOG_SOURCES  src/*.cpp)
 
 # Define sources and executable
 set(EXECUTABLE_NAME "RequestedMiner")

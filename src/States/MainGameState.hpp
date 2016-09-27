@@ -2,7 +2,6 @@
 #define __MAINGAMESTATE_HPP__
 
 #include "GameState.hpp"
-#include "../Entity/EntityManager.hpp"
 #include "../System/TextureManager.hpp"
 #include "../Entity/AnimationManager.hpp"
 #include "../System/TiledScreen.hpp"
