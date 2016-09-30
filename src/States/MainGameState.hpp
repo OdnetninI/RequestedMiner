@@ -8,7 +8,7 @@
 #include "Map/Camera.hpp"
 
 #include "Entity/AnimatedEntity.hpp"
-#include "System/WorldTilesRetriever.hpp"
+#include "Map/WorldTilesRetriever.hpp"
 #include "Map/Map.hpp"
 
 #include "Map/MapEntity/MapEntity.hpp"

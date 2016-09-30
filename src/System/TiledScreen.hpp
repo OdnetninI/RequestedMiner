@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
-#include "System/WorldTilesRetriever.hpp"
+#include "Map/WorldTilesRetriever.hpp"
 
 #define MAP_WIDTH (TILES_X+2)
 #define MAP_HEIGTH (TILES_Y+2)
